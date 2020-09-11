@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import styled from "styled-components"
 import ArticlePreview from "../components/ArticlePreview/ArticlePreview"
 import PageInfo from "../components/PageInfo/PageInfo"
+import slugify from "slugify"
 
 const ArticlesWrapper = styled.div`
   display: grid;
@@ -19,34 +20,32 @@ const ArticlesPage = ({ data }) => (
   <>
     <PageInfo title={pageData.title} paragraph={pageData.paragraph} />
     <ArticlesWrapper>
-      {data.allMdx.nodes.map((item, index) => (
-        <ArticlePreview
-          key={index}
-          title={item.frontmatter.title}
-          author={item.frontmatter.author}
-          image={item.frontmatter.featuredImage.childImageSharp.fluid}
-          slug={item.frontmatter.slug}
-        />
-      ))}
+      {data.allDatoCmsArticle.nodes.map((post, index) => {
+        const slug = slugify(post.title, { lower: true })
+        return (
+          <ArticlePreview
+            key={post.id}
+            title={post.title}
+            author={post.author}
+            image={post.featuredImage.fluid}
+            slug={slug}
+          />
+        )
+      })}
     </ArticlesWrapper>
   </>
 )
 
 export const query = graphql`
   {
-    allMdx {
+    allDatoCmsArticle {
       nodes {
-        excerpt
-        frontmatter {
-          title
-          slug
-          author
-          featuredImage {
-            childImageSharp {
-              fluid(maxWidth: 700, maxHeight: 500) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-            }
+        title
+        id
+        author
+        featuredImage {
+          fluid(maxWidth: 700, maxHeight: 500) {
+            ...GatsbyDatoCmsFluid_tracedSVG
           }
         }
       }

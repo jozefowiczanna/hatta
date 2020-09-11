@@ -31,7 +31,6 @@ const Image = styled.img`
 const GalleryPage = ({ data }) => (
   <>
     <h1>Gallery</h1>
-    {console.log(data)}
     <p>
       While artists work from real to the abstract, architects must work from
       the abstract to the real.

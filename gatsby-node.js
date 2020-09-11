@@ -21,7 +21,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `articles/${slugifiedTitle}`,
       component: blogPostTemplate,
       context: {
-        articleId: post.id,
+        id: post.id,
       },
     })
   })

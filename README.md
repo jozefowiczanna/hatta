@@ -1,3 +1,5 @@
+## Portfolio website based on Gatsby tutorial by Adam Romański
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
