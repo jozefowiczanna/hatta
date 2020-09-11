@@ -1,3 +1,6 @@
+/trash
+.env
+
 # Logs
 logs
 *.log
